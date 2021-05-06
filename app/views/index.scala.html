@@ -1,5 +1,33 @@
 @()
 
 @main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+  <h1>Superhero-Projekt 1.0</h1>
+  <div id="hero">
+    <div id="profil">
+      <form>
+        <label>Enter the heroes name</label>
+        <input id = "heroname" type="text">
+      </form>
+    </div>
+    <div id = "herostat">
+      <div>
+        <button class = "stat" type="button">♥</button>
+        <p> Health =  <span id ="health">  0</span> </p>
+      </div>
+      <div>
+        <button class = "stat" type="button">±</button>
+        <p> Defense  = <span id ="defense">0</span> </p>
+      </div>
+      <div>
+        <button class = "stat" type="button">†</button>
+        <p> Attack =  <span id ="attack">  0</span></p>
+      </div>
+    </div>
+  </div>
+  <div id = "load" >
+    <form >
+      <input id ="new" type="submit" value="New Game">
+    </form>
+  </div>
+
 }
