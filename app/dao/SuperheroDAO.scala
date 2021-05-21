@@ -17,10 +17,10 @@ class SuperheroDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvi
 
   def insert(superhero: Superhero): Future[Unit] = db.run(Superheros += superhero).map { _ => () }
 
-  private class ProduktTable(tag: Tag) extends Table[Superhero](tag, "Superhero") {
+  private class ProduktTable(tag: Tag) extends Table[Superhero](tag, "SUPERHERO") {
 
     def name = column[String]("NAME", O.PrimaryKey)
-    def element = column[String]("Element")
+    def element = column[String]("ELEMENT")
 
 
     def * = (name, element) <> (Superhero.tupled, Superhero.unapply)

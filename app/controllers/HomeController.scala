@@ -37,8 +37,8 @@ def index() = Action.async {
 
   val superhero = Form(
     mapping(
-      "name" -> text(),
-      "Element" -> text())(Superhero.apply)(Superhero.unapply))
+      "NAME" -> text(),
+      "ELEMENT" -> text())(Superhero.apply)(Superhero.unapply))
 
   def insertHero = Action.async { implicit request =>
     val hero: Superhero = superhero.bindFromRequest.get
