@@ -13,7 +13,7 @@ class SuperheroDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvi
 
   private val Superheros = TableQuery[ProduktTable]
 
-  def all(): Future[Seq[Superhero]] = db.run(Superheros.result)
+  def getHero(): Future[Seq[Superhero]] = db.run(Superheros.result)
 
   def insert(superhero: Superhero): Future[Unit] = db.run(Superheros += superhero).map { _ => () }
 

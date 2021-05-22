@@ -26,8 +26,8 @@ class HomeController @Inject() (superheroDao: SuperheroDAO, controllerComponents
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-def index() = Action.async {
-  superheroDao.all().map { case (heros) => Ok(views.html.index(heros)) }
+def index() = Action {
+   Ok(views.html.index())
 }
 
   def env() = Action { implicit request: Request[AnyContent] =>
@@ -35,20 +35,18 @@ def index() = Action.async {
     Ok(System.getenv("JDBC_DATABASE_URL"))
   }
 
-  val superhero = Form(
+  val superheroform = Form(
     mapping(
-      "NAME" -> text(),
-      "ELEMENT" -> text())(Superhero.apply)(Superhero.unapply))
+      "name" -> text(),
+      "element" -> text())(Superhero.apply)(Superhero.unapply))
 
   def insertHero = Action.async { implicit request =>
-    val hero: Superhero = superhero.bindFromRequest.get
-    superheroDao.insert(hero).map(_=> Redirect(routes.HomeController.index))
+    val hero: Superhero = superheroform.bindFromRequest.get
+    superheroDao.insert(hero).map(_=> Redirect(routes.HomeController.site2))
   }
 
-  def site2() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.site2())
+  def site2() = Action.async { implicit request: Request[AnyContent] =>
+    superheroDao.getHero().map { case (heros) => Ok(views.html.site2(heros)) }
   }
-
-
 
 }

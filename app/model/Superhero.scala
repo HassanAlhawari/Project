@@ -1,5 +1,5 @@
 package model
 
-case class Superhero (val heroname : String, val element : String ) {
+case class Superhero (val name : String, val element : String ) {
 
 }

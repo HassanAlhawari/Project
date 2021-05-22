@@ -1,6 +1,3 @@
-@import model.Superhero
-
-@(hero: Seq[Superhero])
 
 @main("Welcome to Play") {
   <h1>Superhero-Projekt 1.0</h1>
@@ -11,14 +8,15 @@
   <br>
 
   <div id = "load" >
-    <form method="GET" action = "/site2">
+    <form method="POST" action = "/insert/hero">
       <label> Heldenname</label>
-      <input id = "inputheroname" type = "text " placeholder="name">
-      <input id = "inputheroname" type = "text " placeholder="element">
+      <input name = "name" type = "text " placeholder="name">
+      <label> Heldenelement</label>
+      <input name = "element" type = "text " placeholder="element">
       <br>
       <br>
       <br>
-      <input id ="new" type="submit" value="start game">
+      <input type="submit" value="start game">
     </form>
   </div>
 }

@@ -1,4 +1,6 @@
-@()
+@import model.Superhero
+@(hero: Seq[Superhero])
+
 @main("Welcome to Play") {
 <h1>Superhero-Projekt 1.0</h1>
 <div id="hero">
@@ -9,7 +11,7 @@
     </form>
   </div>
   <div id = "herostat">
-    <p> Hero's name: <span id = "heroname">null</span> </p>
+    <p> Hero's name: <span id = "heroname">empty</span> </p>
 
     <div>
       <button class = "stat" type="button">❤️</button>
