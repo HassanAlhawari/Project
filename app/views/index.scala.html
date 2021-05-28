@@ -7,16 +7,39 @@
   <br>
   <br>
 
+
+
   <div id = "load" >
-    <form method="POST" action = "/insert/hero">
+
+
+    <form method="POST" action = "/login/hero">
+      <h3> Login</h3>
       <label> Heldenname</label>
-      <input name = "name" type = "text " placeholder="name">
-      <label> Heldenelement</label>
-      <input name = "element" type = "text " placeholder="element">
+      <input name="name" type="text" placeholder="Heldenname">
+      <br>
+      <label> Passwort</label>
+      <input name="passwort" type="text" placeholder="Passwort">
       <br>
       <br>
       <br>
-      <input type="submit" value="start game">
+      <input type="submit" value="einloggen">
     </form>
+    <br>
+    <br>
+    <form method="POST" action = "/insert/hero">
+      <h3> Registration</h3>
+      <label> Heldenname</label>
+      <input name="neuerName" type="text" placeholder="Heldenname">
+      <br>
+      <label> Passwort</label>
+      <input name="neuerPasswort" type="text" placeholder="Passwort">
+      <br>
+      <br>
+      <br>
+      <input type="submit" value="Registrieren">
+    </form>
+
+
+
   </div>
 }

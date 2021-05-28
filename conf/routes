@@ -8,6 +8,8 @@ GET     /                           controllers.HomeController.index()
 
 GET     /site2                      controllers.HomeController.site2()
 POST    /insert/hero                controllers.HomeController.insertHero
+POST    /login/hero                 controllers.HomeController.loginHero
+
 
 GET     /env                        controllers.HomeController.env()
 # Map static resources from the /public folder to the /assets URL path

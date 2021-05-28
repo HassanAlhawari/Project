@@ -1,21 +1,25 @@
 @import model.Superhero
+
 @(hero: Seq[Superhero])
 
 @main("Welcome to Play") {
 <h1>Superhero-Projekt 1.0</h1>
 <div id="hero">
   <div id="profil">
-    <form>
+
       <label id = "menue" >Adventure Menue</label>
       <hr>
-    </form>
+
   </div>
   <div id = "herostat">
-    <p> Hero's name: <span id = "heroname">empty</span> </p>
-
+    <p> Hero's name: <span id = "heroname"> @for(held <- hero) { @held.name }</span> </p>
     <div>
       <button class = "stat" type="button">❤️</button>
-      <p class = "space"> Health (hp) = <span id ="health">0</span> </p>
+      <p class = "space"> Health (hp) = <span id ="health">0</span>/<span>0</span> </p>
+    </div>
+    <div>
+      <button class = "stat" type="button">💧</button>
+      <p class = "space"> Mana (mp) = <span id ="mana">0</span>/<span>0</span></p>
     </div>
     <div>
       <button class = "stat" type="button">🛡️</button>
@@ -26,10 +30,7 @@
       <p class = "space">         Attack = <span id ="attack">0</span></p>
     </div>
     <div>
-      <button class = "stat" type="button">💧</button>
-      <p class = "space"> Mana (mp) = <span id ="mana">0</span></p>
-    </div>
-    <div>
+      <form>
       <div class ="abilities">
         <p> 1. ability:  <span id ="first"> null </span></p>
         <p> Description:  <span id ="fdescribe"> null </span></p>
@@ -42,6 +43,7 @@
         <p> 3. ability:  <span id ="third"> null </span></p>
         <p> Description:  <span id ="tdescribe"> null </span></p>
       </div>
+      </form>
     </div>
   </div>
 

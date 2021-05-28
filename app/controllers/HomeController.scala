@@ -1,6 +1,7 @@
 package controllers
 
-import dao.SuperheroDAO
+import dao.HeroBodyDAO
+import dao.LoginDAO
 import model.Superhero
 
 import javax.inject._
@@ -9,14 +10,14 @@ import play.api.data.Form
 import play.api.data.Forms.{mapping, text}
 import play.api.mvc._
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
  * application's home page.
  */
 @Singleton
-class HomeController @Inject() (superheroDao: SuperheroDAO, controllerComponents: ControllerComponents)
+class HomeController @Inject() (superheroDao: HeroBodyDAO, loginDao : LoginDAO, controllerComponents: ControllerComponents)
                                (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents){
 
 /**
@@ -35,18 +36,36 @@ def index() = Action {
     Ok(System.getenv("JDBC_DATABASE_URL"))
   }
 
-  val superheroform = Form(
+  val superherologinform = Form(
     mapping(
       "name" -> text(),
-      "element" -> text())(Superhero.apply)(Superhero.unapply))
+      "passwort" -> text())(Superhero.apply)(Superhero.unapply))
+
+  def loginHero = Action.async { implicit request =>
+    val hero: Superhero = superherologinform.bindFromRequest().get
+    val hero2 = loginDao.getHero(hero.name)
+    val checkname: Future[Option[String]] = hero2.map(heromap => heromap.headOption.
+      flatMap(userhero => if(userhero.passwort == hero.passwort) Some("ok") else None))
+    print(checkname)
+    checkname.map(name => name match {
+      case Some("ok") => Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name)
+      case None => Redirect(routes.HomeController.index())
+    })
+
+  }
+
+  val superheroform = Form(
+    mapping(
+      "neuerName" -> text(),
+      "neuerPasswort" -> text())(Superhero.apply)(Superhero.unapply))
 
   def insertHero = Action.async { implicit request =>
-    val hero: Superhero = superheroform.bindFromRequest.get
-    superheroDao.insert(hero).map(_=> Redirect(routes.HomeController.site2))
+    val hero: Superhero = superheroform.bindFromRequest().get
+    loginDao.insert(hero).map(_=> Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name))
   }
 
   def site2() = Action.async { implicit request: Request[AnyContent] =>
-    superheroDao.getHero().map { case (heros) => Ok(views.html.site2(heros)) }
+    loginDao.getHero(request.session.get("heroname").getOrElse("nichts")).map { case (heros) => Ok(views.html.site2(heros)) }
   }
 
 }
