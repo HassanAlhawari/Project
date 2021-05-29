@@ -6,16 +6,14 @@
     <br>
     <br>
 
-
     <div id = "load" >
-
-
+        <div id="login">
         <form method="POST" action = "/login/hero">
             <h3> Login</h3>
-            <label> Heldenname</label>
+            <label class="loginlabel"> Heldenname</label>
             <input name="name" type="text" placeholder="Heldenname">
             <br>
-            <label> Passwort</label>
+            <label class="passwortlabel"> Passwort     </label>
             <input name="passwort" type="text" placeholder="Passwort">
             <br>
             <br>
@@ -23,20 +21,22 @@
             <input type="submit" value="einloggen">
         </form>
         <br>
+        </div>
         <br>
+        <div id = "register">
         <form method="POST" action = "/insert/hero">
             <h3> Registration</h3>
-            <label> Heldenname</label>
+            <label class="loginlabel"> Heldenname </label>
             <input name="neuerName" type="text" placeholder="Heldenname">
             <br>
-            <label> Passwort</label>
+            <label class="passwortlabel"> Passwort     </label>
             <input name="neuerPasswort" type="text" placeholder="Passwort">
             <br>
             <br>
             <br>
-            <input type="submit" value="Registrieren">
+            <input type="submit" value="registrieren">
         </form>
-
-
+            <br>
+        </div>
     </div>
 }

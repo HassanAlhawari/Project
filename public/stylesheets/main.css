@@ -9,8 +9,27 @@ h1 {
 #load {
     top: 200px;
     margin:0 auto;
-    width: 150px;
+    width: 350px;
 
+}
+
+.loginlabel {
+    color: white;
+}
+
+.passwortlabel {
+    color: white;
+    white-space:pre;
+}
+
+#login {
+    border: ridge 5px rgba(247, 0, 255, 0.6);
+    background-color: rgba(0, 255, 255, 0.25);
+}
+
+#register {
+    border: ridge 5px rgba(247, 0, 255, 0.6);
+    background-color: rgba(0, 255, 255, 0.25);
 }
 
 #new {
@@ -23,6 +42,7 @@ h1 {
     margin:0 auto;
     border: 5px solid black;
     width: 650px;
+    background-color: rgba(0, 255, 255, 0.25);
 }
 
 #profil {
