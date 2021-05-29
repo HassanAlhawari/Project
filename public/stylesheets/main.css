@@ -40,7 +40,7 @@ h1 {
 
 #hero {
     margin:0 auto;
-    border: 5px solid black;
+    border: ridge 5px rgba(36, 173, 114, 0.58);
     width: 650px;
     background-color: rgba(0, 255, 255, 0.25);
 }
@@ -54,7 +54,7 @@ h1 {
 
 #herostat{
     width: 350px;
-    border: 5px solid black;
+    border: ridge 5px rgba(36, 173, 114, 0.58);
     border-left: none;
     border-bottom: none;
     border-top: none;
@@ -85,7 +85,7 @@ h1 {
 }
 
 .abilities {
-    border: 5px dashed rgba(47, 255, 0, 0.99);
+    border: ridge 3px rgba(36, 173, 114, 0.58);
 }
 
 
