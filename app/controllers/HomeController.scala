@@ -17,19 +17,19 @@ import scala.concurrent.{ExecutionContext, Future}
  * application's home page.
  */
 @Singleton
-class HomeController @Inject() (superheroDao: HeroBodyDAO, loginDao : LoginDAO, controllerComponents: ControllerComponents)
-                               (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents){
+class HomeController @Inject()(superheroDao: HeroBodyDAO, loginDao: LoginDAO, controllerComponents: ControllerComponents)
+                              (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
-/**
+  /**
    * Create an Action to render an HTML page.
    *
    * The configuration in the `routes` file means that this method
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-def index() = Action {
-   Ok(views.html.index())
-}
+  def index() = Action {
+    Ok(views.html.index())
+  }
 
   def env() = Action { implicit request: Request[AnyContent] =>
     //Ok("Nothing to see here")
@@ -45,13 +45,11 @@ def index() = Action {
     val hero: Superhero = superherologinform.bindFromRequest().get
     val hero2 = loginDao.getHero(hero.name)
     val checkname: Future[Option[String]] = hero2.map(heromap => heromap.headOption.
-      flatMap(userhero => if(userhero.passwort == hero.passwort) Some("ok") else None))
-    print(checkname)
+      flatMap(userhero => if (userhero.passwort == hero.passwort) Some("ok") else None))
     checkname.map(name => name match {
       case Some("ok") => Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name)
       case None => Redirect(routes.HomeController.index())
     })
-
   }
 
   val superheroform = Form(
@@ -61,7 +59,7 @@ def index() = Action {
 
   def insertHero = Action.async { implicit request =>
     val hero: Superhero = superheroform.bindFromRequest().get
-    loginDao.insert(hero).map(_=> Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name))
+    loginDao.insert(hero).map(_ => Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name))
   }
 
   def site2() = Action.async { implicit request: Request[AnyContent] =>

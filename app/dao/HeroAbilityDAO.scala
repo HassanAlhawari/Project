@@ -1,7 +1,8 @@
 package dao
 
-import model.Superhero
-import model.HeroBody
+import model.HeroAbility
+
+
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
@@ -12,18 +13,20 @@ class HeroAbilityDAO @Inject()(protected val dbConfigProvider: DatabaseConfigPro
                            (implicit executionContext: ExecutionContext) extends HasDatabaseConfigProvider[JdbcProfile] {
   import profile.api._
 
-  private val HeroBody = TableQuery[HeroTable]
+  private val HeroAbilities = TableQuery[AbilityTable]
 
-  def getHero(): Future[Seq[Superhero]] = db.run(HeroBody.result)
+  def getAbility(): Future[Seq[HeroAbility]] = db.run(HeroAbilities.result)
 
-  def insert(superhero: Superhero): Future[Unit] = db.run(HeroBody += superhero).map { _ => () }
+  def insert(heroability: HeroAbility): Future[Unit] = db.run(HeroAbilities += heroability).map { _ => () }
 
-  private class HeroTable(tag: Tag) extends Table[Superhero](tag, "SUPERHERO") {
+  private class AbilityTable(tag: Tag) extends Table[HeroAbility](tag, "HEROABILITY") {
 
     def name = column[String]("NAME", O.PrimaryKey)
-    def element = column[String]("ELEMENT")
+    def firstAbility = column[String]("FIRSTABILITY")
+    def secondAbility = column[String]("SECONDABILITY")
+    def thirdAbility = column[String]("THIRDABILITY")
 
 
-    def * = (name, element) <> (Superhero.tupled, Superhero.unapply)
+    def * = (name, firstAbility,secondAbility,thirdAbility ) <> (HeroAbility.tupled, HeroAbility.unapply)
   }
 }

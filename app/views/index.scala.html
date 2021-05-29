@@ -1,45 +1,42 @@
-
 @main("Welcome to Play") {
-  <h1>Superhero-Projekt 1.0</h1>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-
-
-  <div id = "load" >
-
-
-    <form method="POST" action = "/login/hero">
-      <h3> Login</h3>
-      <label> Heldenname</label>
-      <input name="name" type="text" placeholder="Heldenname">
-      <br>
-      <label> Passwort</label>
-      <input name="passwort" type="text" placeholder="Passwort">
-      <br>
-      <br>
-      <br>
-      <input type="submit" value="einloggen">
-    </form>
+    <h1>Superhero-Projekt 1.0</h1>
     <br>
     <br>
-    <form method="POST" action = "/insert/hero">
-      <h3> Registration</h3>
-      <label> Heldenname</label>
-      <input name="neuerName" type="text" placeholder="Heldenname">
-      <br>
-      <label> Passwort</label>
-      <input name="neuerPasswort" type="text" placeholder="Passwort">
-      <br>
-      <br>
-      <br>
-      <input type="submit" value="Registrieren">
-    </form>
+    <br>
+    <br>
+    <br>
 
 
+    <div id = "load" >
 
-  </div>
+
+        <form method="POST" action = "/login/hero">
+            <h3> Login</h3>
+            <label> Heldenname</label>
+            <input name="name" type="text" placeholder="Heldenname">
+            <br>
+            <label> Passwort</label>
+            <input name="passwort" type="text" placeholder="Passwort">
+            <br>
+            <br>
+            <br>
+            <input type="submit" value="einloggen">
+        </form>
+        <br>
+        <br>
+        <form method="POST" action = "/insert/hero">
+            <h3> Registration</h3>
+            <label> Heldenname</label>
+            <input name="neuerName" type="text" placeholder="Heldenname">
+            <br>
+            <label> Passwort</label>
+            <input name="neuerPasswort" type="text" placeholder="Passwort">
+            <br>
+            <br>
+            <br>
+            <input type="submit" value="Registrieren">
+        </form>
+
+
+    </div>
 }
