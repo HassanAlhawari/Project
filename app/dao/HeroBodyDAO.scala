@@ -27,6 +27,12 @@ class HeroBodyDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
     def manaMax = column[Int]("MANAMAX")
     def manaCurrent = column[Int]("MANACURRENT")
     def statpoints = column[Int]("STATPOINTS")
+    def firstAbility = column[String]("FIRSTABILITY")
+    def firstDescription = column[String]("FIRSTDESCRIPTION")
+    def secondAbility = column[String]("SECONDABILITY")
+    def secondDescription = column[String]("SECONDDESCRIPTION")
+    def thirdAbility = column[String]("THIRDABILITY")
+    def thirdDescription = column[String]("THIRDDESCRIPTION")
 
     def * = (name, healthMax, healthCurrent, defense, attack, manaMax, manaCurrent, statpoints ) <> (HeroBody.tupled , HeroBody.unapply)
   }
