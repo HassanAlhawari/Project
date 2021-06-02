@@ -48,7 +48,9 @@ h1 {
 }
 
 #heroname {
-    color: rgb(0, 253, 56);
+    color: rgb(7, 102, 6);
+    font-style: normal; font-weight: 700;
+    font-display: swap;
 }
 
 #profil {
@@ -70,21 +72,6 @@ h1 {
     float: left;
 }
 
-#health {
-
-}
-
-#defense {
-
-}
-
-#attack {
-
-}
-
-#mana {
-    white-space:pre;
-}
 
 .space {
     white-space:pre;
@@ -113,4 +100,10 @@ h1 {
     box-sizing: border-box;
 }
 
+
+.outputability{
+    color: rgb(78, 9, 58);
+    font-style: normal; font-weight: 700;
+    font-display: swap;
+}
 

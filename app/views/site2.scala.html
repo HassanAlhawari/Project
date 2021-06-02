@@ -1,9 +1,11 @@
 @import views.html.main
 @import model.HeroBody
 
-@(hero: Seq[HeroBody])
+@(herobody: Seq[HeroBody])
+
 
 @main("Welcome to Play") {
+    @for(hero <- herobody){
     <h1>Superhero-Projekt 1.0</h1>
     <div id="hero">
         <div id="profil">
@@ -24,41 +26,42 @@
             </form>
         </div>
         <div id = "herostat">
-            <p> Hero's name: <span id = "heroname"> @for(held <- hero) {
-                @held.name
-            }</span> </p>
+            <p> Hero's name: <span id = "heroname"> @hero.name </span> </p>
             <div>
                 <button class = "stat" type="button">❤️</button>
-                <p class = "space"> Health (hp) = <span id ="health">0</span>/<span>0</span> </p>
+                <p class = "space"> Health (hp) = <span id ="healthcurrent">@hero.healthcurrent</span>/<span id ="healthmax">@hero.healthmax</span> </p>
             </div>
             <div>
                 <button class = "stat" type="button">💧</button>
-                <p class = "space"> Mana (mp) = <span id ="mana">0</span>/<span>0</span></p>
+                <p class = "space"> Mana (mp) = <span id ="manacurrent">@hero.manacurrent</span>/<span id ="manamax">@hero.manamax</span></p>
             </div>
             <div>
                 <button class = "stat" type="button">🛡️</button>
-                <p class = "space">      Defense = <span id ="defense">0</span> </p>
+                <p class = "space">      Defense = <span id ="defense">@hero.defense</span> </p>
             </div>
             <div>
                 <button class = "stat" type="button">⚔️</button>
-                <p class = "space">         Attack = <span id ="attack">0</span></p>
+                <p class = "space">         Attack = <span id ="attack">@hero.attack</span></p>
             </div>
             <div>
                     <div class ="abilities">
-                        <p> 1. ability (10 mp):  <span id ="first"> null </span></p>
-                        <p> Description:  <span id ="fdescribe"> null </span></p>
+                        <p> 1. ability (10 mp):  <span class = "outputability">@hero.firstAbility </span></p>
+                        <p> Description: <span class = "outputability"> @hero.firstDescription </span></p>
+
                     </div>
                     <div class ="abilities">
-                        <p> 2. ability (25 mp):  <span id ="second"> null </span></p>
-                        <p> Description:  <span id ="sdescribe"> null </span></p>
+                        <p> 2. ability (25 mp):  <span class = "outputability">@hero.secondDescription </span></p>
+                        <p> Description: <span class = "outputability"> @hero.secondDescription </span></p>
+
                     </div>
                     <div class ="abilities">
-                        <p> 3. ability (50 mp):  <span id ="third"> null </span></p>
-                        <p> Description:  <span id ="tdescribe"> null </span></p>
+                        <p> 3. ability (50 mp):  <span class = "outputability">@hero.thirdAbility </span></p>
+                        <p> Description: <span class = "outputability"> @hero.thirdDescription  </span> </p>
+
                     </div>
             </div>
         </div>
 
     </div>
-
+}
 }
