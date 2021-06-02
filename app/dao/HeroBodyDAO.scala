@@ -13,9 +13,9 @@ class HeroBodyDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
 
   private val HeroBodies = TableQuery[HeroTable]
 
-  def getHero(): Future[Seq[HeroBody]] = db.run(HeroBodies.result)
+  def getHero(herobody: String): Future[Seq[HeroBody]] = db.run(HeroBodies.filter(_.name === herobody).result)
 
-  def insert(superhero: HeroBody): Future[Unit] = db.run(HeroBodies += superhero).map { _ => () }
+  def insert(herobody: HeroBody): Future[Unit] = db.run(HeroBodies += herobody).map { _ => () }
 
   private class HeroTable(tag: Tag) extends Table[HeroBody](tag, "HEROBODY") {
 
@@ -34,6 +34,7 @@ class HeroBodyDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
     def thirdAbility = column[String]("THIRDABILITY")
     def thirdDescription = column[String]("THIRDDESCRIPTION")
 
-    def * = (name, healthMax, healthCurrent, defense, attack, manaMax, manaCurrent, statpoints ) <> (HeroBody.tupled , HeroBody.unapply)
+    def * = (name, healthMax, healthCurrent, defense, attack, manaMax, manaCurrent, statpoints,
+      firstAbility, firstDescription, secondAbility, secondDescription, thirdAbility, thirdDescription ) <> (HeroBody.tupled , HeroBody.unapply)
   }
 }

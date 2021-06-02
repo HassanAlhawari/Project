@@ -3,11 +3,12 @@ package controllers
 import dao.HeroBodyDAO
 import dao.LoginDAO
 import model.Superhero
+import model.HeroBody
 
 import javax.inject._
 import play.api._
 import play.api.data.Form
-import play.api.data.Forms.{mapping, text}
+import play.api.data.Forms.{mapping, number, text}
 import play.api.mvc._
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -17,7 +18,7 @@ import scala.concurrent.{ExecutionContext, Future}
  * application's home page.
  */
 @Singleton
-class HomeController @Inject()(superheroDao: HeroBodyDAO, loginDao: LoginDAO, controllerComponents: ControllerComponents)
+class HomeController @Inject()(heroBodyDao: HeroBodyDAO, loginDao: LoginDAO, controllerComponents: ControllerComponents)
                               (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
   /**
@@ -59,11 +60,37 @@ class HomeController @Inject()(superheroDao: HeroBodyDAO, loginDao: LoginDAO, co
 
   def insertHero = Action.async { implicit request =>
     val hero: Superhero = superheroform.bindFromRequest().get
-    loginDao.insert(hero).map(_ => Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name))
+    loginDao.insert(hero).map(_ => Redirect(routes.HomeController.createHero()).withSession("heroname" -> hero.name))
   }
 
+  def createHero() = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.create(request.session.get("heroname").getOrElse("nichts")))}
+
+  val heroBodyForm = Form(
+    mapping(
+      "name" -> text(),
+      "healthmax" -> number(),
+      "healthcurrent" -> number(),
+      "defense" -> number(),
+      "attack" -> number(),
+      "manamax" -> number(),
+      "manacurrent" -> number(),
+      "statpoints" -> number(),
+      "firstability" -> text(),
+      "firstdescription" -> text(),
+      "secondability" -> text(),
+      "seconddescription" -> text(),
+      "thirdability" -> text(),
+      "thirddescription" -> text())(HeroBody.apply)(HeroBody.unapply))
+
+  def insertHeroBody = Action.async { implicit request =>
+    val hero: HeroBody = heroBodyForm.bindFromRequest().get
+    heroBodyDao.insert(hero).map(_ => Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name))
+  }
+
+
   def site2() = Action.async { implicit request: Request[AnyContent] =>
-    loginDao.getHero(request.session.get("heroname").getOrElse("nichts")).map { case (heros) => Ok(views.html.site2(heros)) }
+    heroBodyDao.getHero(request.session.get("heroname").getOrElse("nichts")).map { case (heros) => Ok(views.html.site2(heros)) }
   }
 
 }

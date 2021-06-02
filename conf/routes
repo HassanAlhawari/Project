@@ -5,8 +5,10 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
-
 GET     /site2                      controllers.HomeController.site2()
+GET     /create                     controllers.HomeController.createHero()
+
+POST    /insert/herobody            controllers.HomeController.insertHeroBody
 POST    /insert/hero                controllers.HomeController.insertHero
 POST    /login/hero                 controllers.HomeController.loginHero
 

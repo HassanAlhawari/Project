@@ -1,0 +1,54 @@
+@import model.Superhero
+@import views.html.main
+
+@(heroname: String)
+
+@main("Welcome to Play") {
+    <h1>Superhero-Projekt 1.0</h1>
+    <br>
+    <br>
+    <br>
+    <div id = "load" >
+        <div id="login">
+            <form method="POST" action = "/insert/herobody">
+                <h3> Trage deine Fähigkeiten ein! </h3>
+
+                <p> Hero's name: <span id = "heroname"> @heroname</span> </p>
+
+                <input name="name" type="hidden" value = @heroname >
+                <input name="healthmax" type="hidden" value = 50 >
+                <input name="healthcurrent" type="hidden" value = 50 >
+                <input name="defense" type="hidden" value = 3 >
+                <input name="attack" type="hidden" value = 5 >
+                <input name="manamax" type="hidden" value = 20 >
+                <input name="manacurrent" type="hidden" value = 20 >
+                <input name="statpoints" type="hidden" value = 0 >
+
+                <label class = "createlabel">     1. Fähigkeit  </label>
+                <input class = "inputfeld" name="firstability" type="text" placeholder="1. Fähigkeit">
+                <br>
+                <label class = "createlabel">     Beschreibung </label>
+                <input class = "inputfeld" name="firstdescription" type="text" placeholder="Beschreibung">
+                <hr>
+                <label class = "createlabel">     2. Fähigkeit  </label>
+                <input class = "inputfeld" name="secondability" type="text" placeholder="2. Fähigkeit">
+                <br>
+                <label class = "createlabel">     Beschreibung </label>
+                <input class = "inputfeld" name="seconddescription" type="text" placeholder="Beschreibung">
+                <hr>
+                <label class = "createlabel">     3. Fähigkeit  </label>
+                <input class = "inputfeld" name="thirdability" type="text" placeholder="3. Fähigkeit">
+                <br>
+                <label class = "createlabel">     Beschreibung </label>
+                <input class = "inputfeld" name="thirddescription" type="text" placeholder="Beschreibung">
+                <hr>
+
+                <input id = "createhero" type="submit" value="Helden erstellen">
+
+            </form>
+            <br>
+        </div>
+
+
+    </div>
+}
