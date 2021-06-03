@@ -1,5 +1,5 @@
 body {
-background-color: rgba(0, 255, 255, 0.25);
+    background-color: rgba(0, 255, 255, 0.25);
 }
 
 h1 {
@@ -9,10 +9,9 @@ h1 {
 
 #load {
     top: 200px;
-    margin:0 auto;
+    margin: 0 auto;
     width: 350px;
 }
-
 
 
 .loginlabel {
@@ -21,7 +20,7 @@ h1 {
 
 .passwortlabel {
     color: white;
-    white-space:pre;
+    white-space: pre;
 }
 
 #login {
@@ -36,20 +35,21 @@ h1 {
 
 #new {
     display: block;
-    margin:0 auto;
+    margin: 0 auto;
     width: 100px;
 }
 
 #hero {
-    margin:0 auto;
+    margin: 0 auto;
     border: ridge 5px rgba(36, 173, 114, 0.82);
     width: 650px;
     background-color: rgba(0, 255, 255, 0.57);
 }
 
 #heroname {
-    color: rgb(7, 102, 6);
-    font-style: normal; font-weight: 700;
+    color: rgb(227, 45, 45);
+    font-style: normal;
+    font-weight: 700;
     font-display: swap;
 }
 
@@ -60,7 +60,7 @@ h1 {
     text-align: center;
 }
 
-#herostat{
+#herostat {
     width: 350px;
     border: ridge 5px rgba(36, 173, 114, 0.58);
     border-left: none;
@@ -68,26 +68,26 @@ h1 {
     border-top: none;
 }
 
-.stat{
+.stat {
     float: left;
 }
 
 
 .space {
-    white-space:pre;
+    white-space: pre;
 }
 
 .abilities {
     border: ridge 3px rgba(36, 173, 114, 0.58);
 }
 
-.createlabel{
-    white-space:pre;
+.createlabel {
+    white-space: pre;
     color: rgb(241, 161, 161);
 }
 
-#createhero{
-    margin : 0 auto;
+#createhero {
+    margin: 0 auto;
     display: block;
     width: 40%;
 }
@@ -96,14 +96,15 @@ h1 {
     width: 90%;
     padding: 8px 8px;
     display: block;
-    margin : 0 auto;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
 
-.outputability{
+.outputability {
     color: rgb(78, 9, 58);
-    font-style: normal; font-weight: 700;
+    font-style: normal;
+    font-weight: 700;
     font-display: swap;
 }
 

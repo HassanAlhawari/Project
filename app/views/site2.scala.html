@@ -5,63 +5,81 @@
 
 
 @main("Welcome to Play") {
-    @for(hero <- herobody){
-    <h1>Superhero-Projekt 1.0</h1>
-    <div id="hero">
-        <div id="profil">
-            <label id = "menue" >Adventure Menue</label>
-            <hr>
-            <br>
-            <p>Wähle eine Option aus!</p>
-            <br>
-            <br>
-            <form>
-                <p>Abenteuer starten </p>
-                <input type="submit" value="starten">
-            </form>
-            <br>
-            <form action = "/">
-                <p>Spiel verlassen </p>
-                <input type="submit" value="verlassen">
-            </form>
-        </div>
-        <div id = "herostat">
-            <p> Hero's name: <span id = "heroname"> @hero.name </span> </p>
-            <div>
-                <button class = "stat" type="button">❤️</button>
-                <p class = "space"> Health (hp) = <span id ="healthcurrent">@hero.healthcurrent</span>/<span id ="healthmax">@hero.healthmax</span> </p>
+    @for(hero <- herobody) {
+        <h1>Superhero-Projekt 1.0</h1>
+        <div id="hero">
+            <div id="profil">
+                <label id = "menue" >Adventure Menue</label>
+                <hr>
+                <br>
+                <p>Wähle eine Option aus!</p>
+                <br>
+                <br>
+                <form>
+                    <p>Abenteuer starten </p>
+                    <input type="submit" value="starten">
+                </form>
+                <br>
+                <form action = "/">
+                    <p>Spiel verlassen </p>
+                    <input type="submit" value="verlassen">
+                </form>
             </div>
-            <div>
-                <button class = "stat" type="button">💧</button>
-                <p class = "space"> Mana (mp) = <span id ="manacurrent">@hero.manacurrent</span>/<span id ="manamax">@hero.manamax</span></p>
-            </div>
-            <div>
-                <button class = "stat" type="button">🛡️</button>
-                <p class = "space">      Defense = <span id ="defense">@hero.defense</span> </p>
-            </div>
-            <div>
-                <button class = "stat" type="button">⚔️</button>
-                <p class = "space">         Attack = <span id ="attack">@hero.attack</span></p>
-            </div>
-            <div>
+            <div id = "herostat">
+                <p> Hero's name: <span id = "heroname"> @hero.name </span> </p>
+                <p> Statpoints = <span id ="statpoints">@hero.statpoints</span> </p>
+                <div>
+                    <button class = "stat" id="healthbutton" type="button" onclick="increase_stats(this.id)">❤️</button>
+                    <p class = "space"> Health (hp) = <span id ="healthcurrent">@hero.healthcurrent</span>/<span id ="healthmax">@hero.healthmax</span> </p>
+                </div>
+                <div>
+                    <button class = "stat" id="manabutton" type="button" onclick="increase_stats(this.id)">💧</button>
+                    <p class = "space"> Mana (mp) = <span id ="manacurrent">@hero.manacurrent</span>/<span id ="manamax">@hero.manamax</span></p>
+                </div>
+                <div>
+                    <button class = "stat" id = "defensebutton" type="button" onclick="increase_stats(this.id)">🛡️</button>
+                    <p class = "space">      Defense = <span id ="defense">@hero.defense</span> </p>
+                </div>
+                <div>
+                    <button class = "stat" id = "attackbutton" type="button" onclick="increase_stats(this.id)">⚔️</button>
+                    <p class = "space">         Attack = <span id ="attack">@hero.attack</span></p>
+                </div>
+                <form method="POST" action="/refresh/herobody">
+                    <input name="name" type="hidden" value = @hero.name >
+                    <input id = "inputhealthmax" name="healthmax" type="hidden" value = @hero.healthmax >
+                    <input id = "inputhealthcurrent" name="healthcurrent" type="hidden" value = @hero.healthcurrent >
+                    <input id = "inputdefense" name="defense" type="hidden" value = @hero.defense >
+                    <input id = "inputattack" name="attack" type="hidden" value = @hero.attack >
+                    <input id = "inputmanamax" name="manamax" type="hidden" value = @hero.manamax >
+                    <input id = "inputmanacurrent" name="manacurrent" type="hidden" value = @hero.manacurrent >
+                    <input id = "inputstatpoints" name="statpoints" type="hidden" value = @hero.statpoints>
+                    <input name="firstability" type="hidden" value = @hero.firstAbility>
+                    <input name="firstdescription" type="hidden" value = @hero.firstDescription>
+                    <input name="secondability" type="hidden" value = @hero.secondAbility>
+                    <input name="seconddescription" type="hidden" value = @hero.secondDescription>
+                    <input name="thirdability" type="hidden" value = @hero.thirdAbility>
+                    <input name="thirddescription" type="hidden" value = @hero.thirdDescription>
+                    <input id = "createhero" type="submit" value="speichern">
+                </form>
+                <div>
                     <div class ="abilities">
-                        <p> 1. ability (10 mp):  <span class = "outputability">@hero.firstAbility </span></p>
+                        <p> 1. ability (10 mp): <span class = "outputability">@hero.firstAbility </span></p>
                         <p> Description: <span class = "outputability"> @hero.firstDescription </span></p>
 
                     </div>
                     <div class ="abilities">
-                        <p> 2. ability (25 mp):  <span class = "outputability">@hero.secondDescription </span></p>
+                        <p> 2. ability (25 mp): <span class = "outputability">@hero.secondDescription </span></p>
                         <p> Description: <span class = "outputability"> @hero.secondDescription </span></p>
 
                     </div>
                     <div class ="abilities">
-                        <p> 3. ability (50 mp):  <span class = "outputability">@hero.thirdAbility </span></p>
-                        <p> Description: <span class = "outputability"> @hero.thirdDescription  </span> </p>
-
+                        <p> 3. ability (50 mp): <span class = "outputability">@hero.thirdAbility </span></p>
+                        <p> Description: <span class = "outputability"> @hero.thirdDescription </span> </p>
                     </div>
-            </div>
-        </div>
+                </div>
 
-    </div>
-}
+            </div>
+
+        </div>
+    }
 }

@@ -23,7 +23,6 @@ class LoginDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   private class HeroTable(tag: Tag) extends Table[Superhero](tag, "SUPERHERO") {
 
     def name = column[String]("NAME", O.PrimaryKey)
-
     def passwort = column[String]("PASSWORT")
 
 

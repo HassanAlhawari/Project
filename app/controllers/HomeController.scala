@@ -64,7 +64,8 @@ class HomeController @Inject()(heroBodyDao: HeroBodyDAO, loginDao: LoginDAO, con
   }
 
   def createHero() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.create(request.session.get("heroname").getOrElse("nichts")))}
+    Ok(views.html.create(request.session.get("heroname").getOrElse("nichts")))
+  }
 
   val heroBodyForm = Form(
     mapping(
@@ -83,11 +84,16 @@ class HomeController @Inject()(heroBodyDao: HeroBodyDAO, loginDao: LoginDAO, con
       "thirdability" -> text(),
       "thirddescription" -> text())(HeroBody.apply)(HeroBody.unapply))
 
+
   def insertHeroBody = Action.async { implicit request =>
     val hero: HeroBody = heroBodyForm.bindFromRequest().get
     heroBodyDao.insert(hero).map(_ => Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name))
   }
 
+  def refreshHeroBody = Action.async { implicit request =>
+    val hero: HeroBody = heroBodyForm.bindFromRequest().get
+    heroBodyDao.refresh(hero).map(_ => Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name))
+  }
 
   def site2() = Action.async { implicit request: Request[AnyContent] =>
     heroBodyDao.getHero(request.session.get("heroname").getOrElse("nichts")).map { case (heros) => Ok(views.html.site2(heros)) }

@@ -9,6 +9,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 class HeroBodyDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
                            (implicit executionContext: ExecutionContext) extends HasDatabaseConfigProvider[JdbcProfile] {
+
   import profile.api._
 
   private val HeroBodies = TableQuery[HeroTable]
@@ -16,6 +17,8 @@ class HeroBodyDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
   def getHero(herobody: String): Future[Seq[HeroBody]] = db.run(HeroBodies.filter(_.name === herobody).result)
 
   def insert(herobody: HeroBody): Future[Unit] = db.run(HeroBodies += herobody).map { _ => () }
+
+  def refresh(herobody: HeroBody): Future[Unit] = db.run(HeroBodies.insertOrUpdate(herobody)).map { _ => () }
 
   private class HeroTable(tag: Tag) extends Table[HeroBody](tag, "HEROBODY") {
 
@@ -35,6 +38,6 @@ class HeroBodyDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
     def thirdDescription = column[String]("THIRDDESCRIPTION")
 
     def * = (name, healthMax, healthCurrent, defense, attack, manaMax, manaCurrent, statpoints,
-      firstAbility, firstDescription, secondAbility, secondDescription, thirdAbility, thirdDescription ) <> (HeroBody.tupled , HeroBody.unapply)
+      firstAbility, firstDescription, secondAbility, secondDescription, thirdAbility, thirdDescription) <> (HeroBody.tupled, HeroBody.unapply)
   }
 }

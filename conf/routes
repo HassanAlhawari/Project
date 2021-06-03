@@ -8,8 +8,9 @@ GET     /                           controllers.HomeController.index()
 GET     /site2                      controllers.HomeController.site2()
 GET     /create                     controllers.HomeController.createHero()
 
-POST    /insert/herobody            controllers.HomeController.insertHeroBody
 POST    /insert/hero                controllers.HomeController.insertHero
+POST    /insert/herobody            controllers.HomeController.insertHeroBody
+POST    /refresh/herobody           controllers.HomeController.refreshHeroBody
 POST    /login/hero                 controllers.HomeController.loginHero
 
 
