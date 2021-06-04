@@ -120,7 +120,7 @@ function heroattack(heromove) {
         for(var i = 0; i < ability.length; i++) {
             ability[i].style.pointerEvents = 'none'
         }
-        inputstatpoints.value = inputstatpoints.value + 1;
+        inputstatpoints.value = parseInt(inputstatpoints.value)+1;
         document.getElementById('exit').style.visibility = 'visible';
         document.getElementById('continue').style.visibility = 'visible';
     }
