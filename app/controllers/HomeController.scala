@@ -95,7 +95,6 @@ class HomeController @Inject()(heroBodyDao: HeroBodyDAO, loginDao: LoginDAO, con
     heroBodyDao.refresh(hero).map(_ => Redirect(routes.HomeController.site2).withSession("heroname" -> hero.name))
   }
 
-
   def site2() = Action.async { implicit request: Request[AnyContent] =>
     heroBodyDao.getHero(request.session.get("heroname").getOrElse("nichts")).map { case (heros) => Ok(views.html.site2(heros)) }
   }

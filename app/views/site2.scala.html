@@ -61,26 +61,26 @@
                     <input name="seconddescription" type="hidden" value = @hero.secondDescription>
                     <input name="thirdability" type="hidden" value = @hero.thirdAbility>
                     <input name="thirddescription" type="hidden" value = @hero.thirdDescription>
-                    <input id = "insertstat" type="submit" value="save">
+                    <input id = "insertstat" type="submit" value="sichern">
                 </form>
                 <form method="GET" action="/site2">
-                    <input id="refreshstat" type="submit" value="reset">
+                    <input id="refreshstat" type="submit" value="zurücksetzen">
                 </form>
                     </div>
                     <div>
                     <div class ="abilities">
-                        <p> 1. ability (10 mp): <span class = "outputability">@hero.firstAbility </span></p>
-                        <p> Description: <span class = "outputability"> @hero.firstDescription </span></p>
+                        <p> 1. ability (10 mp): <span class = "outputability" id="firstability">@hero.firstAbility </span></p>
+                        <p> Description: <span class = "outputability" id="firstdescription"> @hero.firstDescription </span></p>
 
                     </div>
                     <div class ="abilities">
-                        <p> 2. ability (25 mp): <span class = "outputability">@hero.secondDescription </span></p>
-                        <p> Description: <span class = "outputability"> @hero.secondDescription </span></p>
+                        <p> 2. ability (25 mp): <span class = "outputability" id="secondability">@hero.secondAbility </span></p>
+                        <p> Description: <span class = "outputability" id="seconddescription"> @hero.secondDescription </span></p>
 
                     </div>
                     <div class ="abilities">
-                        <p> 3. ability (50 mp): <span class = "outputability">@hero.thirdAbility </span></p>
-                        <p> Description: <span class = "outputability"> @hero.thirdDescription </span> </p>
+                        <p> 3. ability (50 mp): <span class = "outputability" id="thirdability">@hero.thirdAbility </span></p>
+                        <p> Description: <span class = "outputability" id="thirddescription"> @hero.thirdDescription </span> </p>
                     </div>
                 </div>
 

@@ -11,15 +11,35 @@
             <div id="menue">
                 <label id = "menuelabel" >--Battle Phase--</label>
                 <hr>
-                <p>An enemy approached!</p>
-                <p class="space">Attack: <span id ="enemyattackdamage" >5</span>              HP:   <span id = "enemyhealthcurrent">50</span>/<span id="enemyhealthmax">50</span> </p>
+                <p id ="actionevent">An enemy approached!</p>
+                <p class="space">Attack: <span id ="enemyattackdamage" >5</span>              HP:   <span id = "enemyhealthcurrent">70</span>/<span id="enemyhealthmax">70</span> </p>
                 <img id = "enemy" src="@routes.Assets.versioned("images/goblin.png")" alt="Goblin">
                 <div id="moves">
-                    <p>Enemy move: <span id="abilityenemymove" ></span> </p>
-                    <p id = "descriptionenemymove" ></pid>
-                    <br>
+                    <p>Enemy move: <span id = "descriptionenemymove"> </span> </p>
                     <p>Hero's move: <span id="abilityheromove" ></span></p>
-                    <p id = "descriptionheromove" ></pid>
+                    <p id = "descriptionheromove" ></p>
+                    <div>
+                        <form method="POST" action="/refresh/herobody">
+                            <input name="name" type="hidden" value = @hero.name >
+                            <input id = "inputhealthmax" name="healthmax" type="hidden" value = @hero.healthmax >
+                            <input id = "inputhealthcurrent" name="healthcurrent" type="hidden" value = @hero.healthcurrent >
+                            <input id = "inputdefense" name="defense" type="hidden" value = @hero.defense >
+                            <input id = "inputattack" name="attack" type="hidden" value = @hero.attack >
+                            <input id = "inputmanamax" name="manamax" type="hidden" value = @hero.manamax >
+                            <input id = "inputmanacurrent" name="manacurrent" type="hidden" value = @hero.manacurrent >
+                            <input id = "inputstatpoints" name="statpoints" type="hidden" value = @hero.statpoints>
+                            <input name="firstability" type="hidden" value = @hero.firstAbility>
+                            <input name="firstdescription" type="hidden" value = @hero.firstDescription>
+                            <input name="secondability" type="hidden" value = @hero.secondAbility>
+                            <input name="seconddescription" type="hidden" value = @hero.secondDescription>
+                            <input name="thirdability" type="hidden" value = @hero.thirdAbility>
+                            <input name="thirddescription" type="hidden" value = @hero.thirdDescription>
+                            <input id = "exit" type="submit" value="verlassen/sichern">
+                        </form>
+
+                        <button id="continue" onclick="generateEnemy()"> fortfahren </button>
+
+                    </div>
                 </div>
             </div>
             <div id = "herostat">
@@ -42,42 +62,21 @@
                 </div>
                 <hr>
                 <div>
-                    <form method="POST" action="/refresh/herobody">
-                        <input name="name" type="hidden" value = @hero.name >
-                        <input id = "inputhealthmax" name="healthmax" type="hidden" value = @hero.healthmax >
-                        <input id = "inputhealthcurrent" name="healthcurrent" type="hidden" value = @hero.healthcurrent >
-                        <input id = "inputdefense" name="defense" type="hidden" value = @hero.defense >
-                        <input id = "inputattack" name="attack" type="hidden" value = @hero.attack >
-                        <input id = "inputmanamax" name="manamax" type="hidden" value = @hero.manamax >
-                        <input id = "inputmanacurrent" name="manacurrent" type="hidden" value = @hero.manacurrent >
-                        <input id = "inputstatpoints" name="statpoints" type="hidden" value = @hero.statpoints>
-                        <input name="firstability" type="hidden" value = @hero.firstAbility>
-                        <input name="firstdescription" type="hidden" value = @hero.firstDescription>
-                        <input name="secondability" type="hidden" value = @hero.secondAbility>
-                        <input name="seconddescription" type="hidden" value = @hero.secondDescription>
-                        <input name="thirdability" type="hidden" value = @hero.thirdAbility>
-                        <input name="thirddescription" type="hidden" value = @hero.thirdDescription>
-                    </form>
-
-                </div>
-                <div>
                     <div class ="highlightability" id = "normalmove" onclick="heroattack(this.id)">
-                        <h3> Normaler Angriff</h3>
+                        <h3> normal attack</h3>
                     </div>
 
                     <div class ="highlightability" id = "firstmove" onclick="heroattack(this.id)">
-                        <p> 1. ability (10 mp): <span class = "outputability">@hero.firstAbility </span></p>
-                        <p> Description: <span class = "outputability"> @hero.firstDescription </span></p>
-
+                        <p> 1. ability (10 mp): <span class = "outputability" id="firstmoveability">@hero.firstAbility </span></p>
+                        <p> Description: <span class = "outputability" id="firstmovedescription"> @hero.firstDescription </span></p>
                     </div>
                     <div class ="highlightability" id = "secondmove" onclick="heroattack(this.id)">
-                        <p> 2. ability (25 mp): <span class = "outputability">@hero.secondDescription </span></p>
-                        <p> Description: <span class = "outputability"> @hero.secondDescription </span></p>
-
+                        <p> 2. ability (25 mp): <span class = "outputability" id="secondmoveability">@hero.secondAbility </span></p>
+                        <p> Description: <span class = "outputability" id="secondmovedescription"> @hero.secondDescription </span></p>
                     </div>
                     <div class ="highlightability" id = "thirdmove" onclick="heroattack(this.id)">
-                        <p> 3. ability (50 mp): <span class = "outputability">@hero.thirdAbility </span></p>
-                        <p> Description: <span class = "outputability"> @hero.thirdDescription </span> </p>
+                        <p> 3. ability (50 mp): <span class = "outputability" id="thirdmoveability">@hero.thirdAbility </span></p>
+                        <p> Description: <span class = "outputability" id="thirdmovedescription"> @hero.thirdDescription </span> </p>
                     </div>
                 </div>
 

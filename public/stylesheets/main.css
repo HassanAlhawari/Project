@@ -122,14 +122,29 @@ h3 {
     width: 40%;
 }
 
+#exit {
+    margin-left: 20px;
+    display: block;
+    width: 50%;
+    float: left;
+    visibility: hidden;
+}
+
+#continue {
+    margin: 0 auto;
+    display: block;
+    width: 40%;
+    visibility: hidden;
+}
+
 .inputfeld {
     width: 90%;
     padding: 8px 8px;
     display: block;
     margin: 0 auto;
     box-sizing: border-box;
-}
 
+}
 
 .outputability {
     color: rgb(78, 9, 58);
