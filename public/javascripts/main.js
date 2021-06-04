@@ -48,7 +48,6 @@ function increase_stats(idbutton){
 
 
 function heroattack(heromove) {
-    inputstatpoints = document.getElementById('inputstatpoints')
     attack = document.getElementById('attack');
     manacurrent = document.getElementById('manacurrent');
     enemyhealtcurrent = document.getElementById('enemyhealthcurrent');
@@ -114,13 +113,14 @@ function heroattack(heromove) {
     }
 
     if(parseInt(enemyhealtcurrent.innerText) == 0){
+        inputstatpoints = document.getElementById('inputstatpoints');
         console.log("You defeated the enemy!");
         document.getElementById('actionevent').innerText = "You defeated the enemy!";
         ability = document.getElementsByClassName('highlightability');
         for(var i = 0; i < ability.length; i++) {
             ability[i].style.pointerEvents = 'none'
         }
-        inputstatpoints.value = parseInt(inputstatpoints.value)+1;
+        inputstatpoints.value = parseInt(inputstatpoints.value) + 1;
         document.getElementById('exit').style.visibility = 'visible';
         document.getElementById('continue').style.visibility = 'visible';
     }
@@ -203,6 +203,8 @@ function refreshmenue(){
     }
     document.getElementById('actionevent').innerText = "An enemy approached!";
     document.getElementById('descriptionenemymove').innerText = "";
+    document.getElementById('abilityheromove').innerText = "";
+    document.getElementById('descriptionheromove').innerText = "";
 }
 
 
