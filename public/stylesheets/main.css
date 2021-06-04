@@ -7,6 +7,10 @@ h1 {
     color: white;
 }
 
+h3 {
+    text-align: center;
+}
+
 #load {
     top: 200px;
     margin: 0 auto;
@@ -53,11 +57,16 @@ h1 {
     font-display: swap;
 }
 
-#profil {
+#menue {
     float: right;
     width: 260px;
     margin: 18px;
     text-align: center;
+}
+
+#moves {
+    width: 100%;
+    text-align: left;
 }
 
 #herostat {
@@ -81,12 +90,33 @@ h1 {
     border: ridge 3px rgba(36, 173, 114, 0.58);
 }
 
+.highlightability {
+    border: ridge 3px rgba(36, 173, 114, 0.58);
+}
+
+.highlightability:hover {
+    background-color: rgb(36, 173, 114);
+}
+
 .createlabel {
     white-space: pre;
     color: rgb(241, 161, 161);
 }
 
 #createhero {
+    margin: 0 auto;
+    display: block;
+    width: 40%;
+}
+
+#insertstat {
+    margin-left: 20px;
+    display: block;
+    width: 40%;
+    float: left;
+}
+
+#refreshstat{
     margin: 0 auto;
     display: block;
     width: 40%;
@@ -108,3 +138,12 @@ h1 {
     font-display: swap;
 }
 
+.noclick{
+    pointer-events: none;
+    float: left;
+}
+
+#enemy{
+    max-width:60%;
+    max-height:60%;
+}

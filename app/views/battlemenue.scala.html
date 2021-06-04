@@ -1,0 +1,88 @@
+@import views.html.main
+@import model.HeroBody
+
+@(herobody: Seq[HeroBody])
+
+
+@main("Welcome to Play") {
+    @for(hero <- herobody) {
+        <h1>Superhero-Projekt 1.0</h1>
+        <div id="hero">
+            <div id="menue">
+                <label id = "menuelabel" >--Battle Phase--</label>
+                <hr>
+                <p>An enemy approached!</p>
+                <p class="space">Attack: <span id ="enemyattackdamage" >5</span>              HP:   <span id = "enemyhealthcurrent">50</span>/<span id="enemyhealthmax">50</span> </p>
+                <img id = "enemy" src="@routes.Assets.versioned("images/goblin.png")" alt="Goblin">
+                <div id="moves">
+                    <p>Enemy move: <span id="abilityenemymove" ></span> </p>
+                    <p id = "descriptionenemymove" ></pid>
+                    <br>
+                    <p>Hero's move: <span id="abilityheromove" ></span></p>
+                    <p id = "descriptionheromove" ></pid>
+                </div>
+            </div>
+            <div id = "herostat">
+                <p> Hero's name: <span id = "heroname"> @hero.name </span> </p>
+                <div>
+                    <button class = "noclick" id="healthbutton" type="button" onclick="increase_stats(this.id)">❤️</button>
+                    <p class = "space"> Health (hp) = <span id ="healthcurrent">@hero.healthcurrent</span>/<span id ="healthmax">@hero.healthmax</span> </p>
+                </div>
+                <div>
+                    <button class = "noclick" id="manabutton" type="button" onclick="increase_stats(this.id)">💧</button>
+                    <p class = "space"> Mana (mp) = <span id ="manacurrent">@hero.manacurrent</span>/<span id ="manamax">@hero.manamax</span></p>
+                </div>
+                <div>
+                    <button class = "noclick" id = "defensebutton" type="button" onclick="increase_stats(this.id)">🛡️</button>
+                    <p class = "space">      Defense = <span id ="defense">@hero.defense</span> </p>
+                </div>
+                <div>
+                    <button class = "noclick" id = "attackbutton" type="button" onclick="increase_stats(this.id)">⚔️</button>
+                    <p class = "space">         Attack = <span id ="attack">@hero.attack</span></p>
+                </div>
+                <hr>
+                <div>
+                    <form method="POST" action="/refresh/herobody">
+                        <input name="name" type="hidden" value = @hero.name >
+                        <input id = "inputhealthmax" name="healthmax" type="hidden" value = @hero.healthmax >
+                        <input id = "inputhealthcurrent" name="healthcurrent" type="hidden" value = @hero.healthcurrent >
+                        <input id = "inputdefense" name="defense" type="hidden" value = @hero.defense >
+                        <input id = "inputattack" name="attack" type="hidden" value = @hero.attack >
+                        <input id = "inputmanamax" name="manamax" type="hidden" value = @hero.manamax >
+                        <input id = "inputmanacurrent" name="manacurrent" type="hidden" value = @hero.manacurrent >
+                        <input id = "inputstatpoints" name="statpoints" type="hidden" value = @hero.statpoints>
+                        <input name="firstability" type="hidden" value = @hero.firstAbility>
+                        <input name="firstdescription" type="hidden" value = @hero.firstDescription>
+                        <input name="secondability" type="hidden" value = @hero.secondAbility>
+                        <input name="seconddescription" type="hidden" value = @hero.secondDescription>
+                        <input name="thirdability" type="hidden" value = @hero.thirdAbility>
+                        <input name="thirddescription" type="hidden" value = @hero.thirdDescription>
+                    </form>
+
+                </div>
+                <div>
+                    <div class ="highlightability" id = "normalmove" onclick="heroattack(this.id)">
+                        <h3> Normaler Angriff</h3>
+                    </div>
+
+                    <div class ="highlightability" id = "firstmove" onclick="heroattack(this.id)">
+                        <p> 1. ability (10 mp): <span class = "outputability">@hero.firstAbility </span></p>
+                        <p> Description: <span class = "outputability"> @hero.firstDescription </span></p>
+
+                    </div>
+                    <div class ="highlightability" id = "secondmove" onclick="heroattack(this.id)">
+                        <p> 2. ability (25 mp): <span class = "outputability">@hero.secondDescription </span></p>
+                        <p> Description: <span class = "outputability"> @hero.secondDescription </span></p>
+
+                    </div>
+                    <div class ="highlightability" id = "thirdmove" onclick="heroattack(this.id)">
+                        <p> 3. ability (50 mp): <span class = "outputability">@hero.thirdAbility </span></p>
+                        <p> Description: <span class = "outputability"> @hero.thirdDescription </span> </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    }
+}

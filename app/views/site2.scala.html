@@ -8,14 +8,14 @@
     @for(hero <- herobody) {
         <h1>Superhero-Projekt 1.0</h1>
         <div id="hero">
-            <div id="profil">
-                <label id = "menue" >Adventure Menue</label>
+            <div id="menue">
+                <label>Adventure Menue</label>
                 <hr>
                 <br>
                 <p>Wähle eine Option aus!</p>
                 <br>
                 <br>
-                <form>
+                <form method="GET" action="/battle">
                     <p>Abenteuer starten </p>
                     <input type="submit" value="starten">
                 </form>
@@ -44,6 +44,8 @@
                     <button class = "stat" id = "attackbutton" type="button" onclick="increase_stats(this.id)">⚔️</button>
                     <p class = "space">         Attack = <span id ="attack">@hero.attack</span></p>
                 </div>
+                <hr>
+                <div>
                 <form method="POST" action="/refresh/herobody">
                     <input name="name" type="hidden" value = @hero.name >
                     <input id = "inputhealthmax" name="healthmax" type="hidden" value = @hero.healthmax >
@@ -59,9 +61,13 @@
                     <input name="seconddescription" type="hidden" value = @hero.secondDescription>
                     <input name="thirdability" type="hidden" value = @hero.thirdAbility>
                     <input name="thirddescription" type="hidden" value = @hero.thirdDescription>
-                    <input id = "createhero" type="submit" value="speichern">
+                    <input id = "insertstat" type="submit" value="save">
                 </form>
-                <div>
+                <form method="GET" action="/site2">
+                    <input id="refreshstat" type="submit" value="reset">
+                </form>
+                    </div>
+                    <div>
                     <div class ="abilities">
                         <p> 1. ability (10 mp): <span class = "outputability">@hero.firstAbility </span></p>
                         <p> Description: <span class = "outputability"> @hero.firstDescription </span></p>
