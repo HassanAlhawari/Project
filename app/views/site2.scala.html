@@ -47,7 +47,7 @@
                 <hr>
                 <div>
                 <form method="POST" action="/refresh/herobody">
-                    <input name="name" type="hidden" value = @hero.name >
+                    <input name="name" type="hidden" value ="@hero.name" >
                     <input id = "inputhealthmax" name="healthmax" type="hidden" value = @hero.healthmax >
                     <input id = "inputhealthcurrent" name="healthcurrent" type="hidden" value = @hero.healthcurrent >
                     <input id = "inputdefense" name="defense" type="hidden" value = @hero.defense >
@@ -55,12 +55,12 @@
                     <input id = "inputmanamax" name="manamax" type="hidden" value = @hero.manamax >
                     <input id = "inputmanacurrent" name="manacurrent" type="hidden" value = @hero.manacurrent >
                     <input id = "inputstatpoints" name="statpoints" type="hidden" value = @hero.statpoints>
-                    <input name="firstability" type="hidden" value = @hero.firstAbility>
-                    <input name="firstdescription" type="hidden" value = @hero.firstDescription>
-                    <input name="secondability" type="hidden" value = @hero.secondAbility>
-                    <input name="seconddescription" type="hidden" value = @hero.secondDescription>
-                    <input name="thirdability" type="hidden" value = @hero.thirdAbility>
-                    <input name="thirddescription" type="hidden" value = @hero.thirdDescription>
+                    <input name="firstability" type="hidden" value =@hero.firstAbility.mkString>
+                    <input name="firstdescription" type="hidden" value ="@hero.firstDescription">
+                    <input name="secondability" type="hidden" value ="@hero.secondAbility">
+                    <input name="seconddescription" type="hidden" value ="@hero.secondDescription">
+                    <input name="thirdability" type="hidden" value ="@hero.thirdAbility">
+                    <input name="thirddescription" type="hidden" value ="@hero.thirdDescription">
                     <input id = "insertstat" type="submit" value="sichern">
                 </form>
                 <form method="GET" action="/site2">
