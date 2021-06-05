@@ -186,7 +186,7 @@ function generateEnemy(){
         document.getElementById('enemyhealthmax').innerText = 50;
     }
     else{
-        document.getElementById("enemy").setAttribute("src", "/assets/images/demon.gif" );
+        document.getElementById("enemy").setAttribute("src", "/assets/images/demon.png" );
         document.getElementById('enemyattackdamage').innerText = 100;
         document.getElementById('enemyhealthcurrent').innerText = 500;
         document.getElementById('enemyhealthmax').innerText = 500;
