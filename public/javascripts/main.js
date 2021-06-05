@@ -180,16 +180,16 @@ function generateEnemy(){
         document.getElementById('enemyhealthmax').innerText = 70;
     }
     else if (randomenemy ==3){
-        document.getElementById("enemy").setAttribute("src", "/assets/images/ghost.png" );
-        document.getElementById('enemyattackdamage').innerText = 10;
-        document.getElementById('enemyhealthcurrent').innerText = 50;
-        document.getElementById('enemyhealthmax').innerText = 50;
-    }
-    else{
         document.getElementById("enemy").setAttribute("src", "/assets/images/demonboss.png" );
         document.getElementById('enemyattackdamage').innerText = 100;
         document.getElementById('enemyhealthcurrent').innerText = 500;
         document.getElementById('enemyhealthmax').innerText = 500;
+    }
+    else{
+        document.getElementById("enemy").setAttribute("src", "/assets/images/ghost.png" );
+        document.getElementById('enemyattackdamage').innerText = 10;
+        document.getElementById('enemyhealthcurrent').innerText = 50;
+        document.getElementById('enemyhealthmax').innerText = 50;
     }
 }
 
