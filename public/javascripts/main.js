@@ -114,8 +114,8 @@ function heroattack(heromove) {
 
     if(parseInt(enemyhealtcurrent.innerText) == 0){
         inputstatpoints = document.getElementById('inputstatpoints');
-        console.log("You defeated the enemy!");
-        document.getElementById('actionevent').innerText = "You defeated the enemy!";
+        console.log("You defeated the enemy! You gained +1 Statpoints");
+        document.getElementById('actionevent').innerText = "You defeated the enemy! +1 Statpoints ";
         ability = document.getElementsByClassName('highlightability');
         for(var i = 0; i < ability.length; i++) {
             ability[i].style.pointerEvents = 'none'
