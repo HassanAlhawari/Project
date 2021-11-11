@@ -60,8 +60,9 @@ class HomeController @Inject()(heroBodyDao: HeroBodyDAO, loginDao: LoginDAO, con
 
   def insertHero = Action.async { implicit request =>
     val hero: Superhero = superheroform.bindFromRequest().get
-    loginDao.insert(hero).map(_ => Redirect(routes.HomeController.createHero()).withSession("heroname" -> hero.name))
+      loginDao.insert(hero).map(_ => Redirect(routes.HomeController.createHero()).withSession("heroname" -> hero.name))
   }
+
 
   def createHero() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.create(request.session.get("heroname").getOrElse("nichts")))
